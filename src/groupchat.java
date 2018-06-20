@@ -159,9 +159,9 @@ class groupchatui extends JFrame implements ActionListener, KeyListener,Runnable
 				e1.printStackTrace();
 			}
             //string.getBytes(0, string.length(), databyte, 0);
+			int len=getlength(databyte);
 		//发送给自己
 		try {
-			int len=getlength(databyte);
             DatagramPacket sendPacket = new DatagramPacket(databyte,len, java.net.InetAddress.getByName(m_ip), Integer.parseInt(m_port));
             sendSocket=new DatagramSocket();
             sendSocket.send(sendPacket);
@@ -171,7 +171,7 @@ class groupchatui extends JFrame implements ActionListener, KeyListener,Runnable
 		//发送给其他人
 		for(int ti=0;ti<num;++ti) {
             try {
-            	DatagramPacket sendPacket = new DatagramPacket(databyte, string.length(), java.net.InetAddress.getByName(ip[ti]), Integer.parseInt(port[ti]));
+            	DatagramPacket sendPacket = new DatagramPacket(databyte, len, java.net.InetAddress.getByName(ip[ti]), Integer.parseInt(port[ti]));
             
 				sendSocket=new DatagramSocket();
 				sendSocket.send(sendPacket);
